@@ -3,8 +3,7 @@
 #' @param default location of the trap is at (5,5)
 #' @param default value for radius of influence is 15
 #' @param dStep is how much a lobster moves in each time step
-#' @param ZoI is trap's zone of influence which gets updated in each timestpe
-#' @param thetaT calculates angle to the trap
+#' @param ZoI is trap's zone of influence which gets updated in each timestep
 #' @return a list of new location for each individual lobster
 #' @export
 directionalMove<- function(xLobster, yLobster, dStep, distanceToTrap,
