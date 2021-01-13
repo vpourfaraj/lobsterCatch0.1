@@ -1,17 +1,153 @@
+#pushing the changes to github
 # After any change to the code and in order to make sure changes are included: upon R restart 
 require(lobsterCatch)
 require(devtools)
 load_all('FilePathTogitrepoOnMyCPU/lobsterCatch')
+# and then load the latest version of the package
+install_github('vpourfaraj/lobsterCatch',ref='main')
 
 
-#What impact does saturation have on mean catch and dispersion index
+#initialize a parameter file to pass info into the code and then put all into a function
 
-#initial Values
 p = list()
 p$nrowgrids = 10
 p$ncolgrids = 10
 p$ngrids=p$nrowgrids * p$ncolgrids
-p$initlambda=0.1
+p$initlambda=.1
+p$initD = 3
+p$smult = 0.993
+p$currentZoIInit = 1
+p$trapSaturationStart = T
+
+p$trapEastStart = c(5,3,4)
+p$trapNorthStart = c(5,3,4)
+p$ntrapsstart = length(p$trapEastStart)
+
+p$saturationThresholdStart = 5
+p$how_closeStart = 1
+p$dstepstart = 5 
+
+p$niter =100
+
+
+
+
+#run the model
+a = SimulateLobsterMovement(p=p)
+
+plot(1:p$niter,a$traps[,1],xlab='Time',ylab='N Caught',ylim=c(0,15))
+
+#lets change a parameter
+p$saturationThresholdStart=10
+
+# rerun
+b = SimulateLobsterMovement(p=p)
+
+lines(1:p$niter,b$traps[,1])
+
+#or just run it a bunch of times since the model is stochastic
+p$saturationThresholdStart = 5
+time.to.max=list()
+max.catch = list()
+realizations = 50
+plot(1:p$niter,xlab='Time',ylab='N Caught',ylim=c(0,15),type='n')
+
+for(i in 1:realizations){
+  a = SimulateLobsterMovement(p=p)
+  for(j in 1:ncol(a$traps)){
+    lines(1:p$niter,a$traps[,j])
+  }
+  time.to.max[[i]] = apply(a$traps,2, which.max)
+  max.catch[[i]] = apply(a$traps,2,max)
+}
+time.to.max = do.call(rbind,time.to.max)
+max.catch = do.call(rbind,max.catch)
+
+#calculating dispersion
+disp = apply(max.catch,1,dispersion)
+mean(disp)
+
+
+#next trial changing saturation
+p$saturationThresholdStart = 8
+time.to.max8=c()
+max.catch8 = c()
+time.to.max8=list()
+max.catch8 = list()
+realizations = 50
+
+plot(1:p$niter,xlab='Time',ylab='N Caught',ylim=c(0,15),type='n')
+
+for(i in 1:realizations){
+  a = SimulateLobsterMovement(p=p)
+  for(j in 1:ncol(a$traps)){
+    lines(1:p$niter,a$traps[,j])
+  }
+  time.to.max8[[i]] = apply(a$traps,2, which.max)
+  max.catch8[[i]] = apply(a$traps,2,max)
+}
+p = list()
+p$nrowgrids = 10
+p$ncolgrids = 10
+p$ngrids=p$nrowgrids * p$ncolgrids
+p$initlambda=.1
+p$initD = 3
+p$smult = 0.993
+p$currentZoIInit = 1
+
+p$trapEastStart = c(5,2,7)
+p$trapNorthStart = c(5,2,7)
+p$ntrapsstart = length(p$trapEastStart)
+
+p$saturationThresholdStart = 5
+p$how_closeStart = .01
+p$dstepstart = 5 
+p$trapSaturationStart = T
+
+p$niter =100
+
+
+realizations = 200
+dispersionSaturation = c()
+meanCatchWithSat = c()
+smult_start = seq(.9,1,by=.01)
+
+for(j in 1:length(smult_start)){
+  print(smult_start[j])
+  max.catchSat = list()
+  max.catchnoSat = list()
+  p$smult = smult_start[j]
+  for(i in 1:realizations){
+    a = SimulateLobsterMovement(p=p)
+    if(any(a$traps>0)) max.catchSat[[i]] = apply(a$traps,2,max)
+  }
+  max.catchSat = do.call(rbind,max.catchSat)
+  
+  if(p$ntrapsstart==1) meanSat = apply(max.catchSat,2,mean)
+  if(p$ntrapsstart>1) meanSat = apply(max.catchSat,1,mean)
+  meanCatchWithSat = c(meanCatchWithSat,mean(meanSat)  )
+  
+  if(p$ntrapsstart==1) dispSat = apply(max.catchSat,2,dispersion)
+  if(p$ntrapsstart>1) dispSat = apply(max.catchSat,1,dispersion)
+  dispersionSaturation = c(dispersionSaturation,mean(na.omit(dispSat))  )
+}
+
+plot(smult_start,dispersionSaturation,ylim=c(0,2),type = 'b')
+
+plot(smult_start,meanCatchWithSat,type = 'b')
+
+time.to.max8 = do.call(rbind,time.to.max8)
+max.catch8 = do.call(rbind,max.catch8)
+
+
+#What impact does saturation have on mean catch and dispersion index
+
+#base
+p = list()
+p$nrowgrids = 10
+p$ncolgrids = 10
+p$ngrids=p$nrowgrids * p$ncolgrids
+p$initlambda=.1
 p$initD = 3
 p$smult = .97 #varying shrinkage factor
 p$currentZoIInit = 1
@@ -79,8 +215,8 @@ for(j in 1:length(lambda)){
 
 plot(lambda,dispersionSaturation,ylim=c(0,26),type = 'b')
 lines(lambda,dispersionNoSaturation,ylim=c(0,4),type = 'b',col='red')
-#####################################################################
-########just shrinkage factor
+
+#################################just shrinkage factor
 
 p = list()
 p$nrowgrids = 10
@@ -194,4 +330,3 @@ for(j in 1:length(smult_start)){
 plot(smult_start,dispersionSaturation,ylim=c(0,2),type = 'b')
 
 plot(smult_start,meanCatchWithSat,type = 'b')
-
