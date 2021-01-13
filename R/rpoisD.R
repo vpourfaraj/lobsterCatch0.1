@@ -3,8 +3,9 @@
 #' @param lambda is the mean
 #' @param D is the dispersion index
 #' @param sz this puts the overdispersion in terms of lambda(mean) and returns the appropriate size for Binomial distribution
-#' @return a vector
+#' @return a vector of integers
 #' @export
+
 rpoisD<-function (n, lambda,D=1) {
   if (D==1){
     rpois(n, lambda)
@@ -12,7 +13,4 @@ rpoisD<-function (n, lambda,D=1) {
     sz = lambda^2/(D*lambda-lambda)
     rnbinom(n, size=sz, mu=lambda)
   }
-}
-dispersion <- function(x) {
-  var(x) / mean(x)
 }
