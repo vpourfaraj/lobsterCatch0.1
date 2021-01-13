@@ -1,5 +1,4 @@
 #' This function generates either a Poisson or a negative binomial distribution of lobsters on the sea bed
-#' dispersion function calculates variance:Mean ratio
 #' @param n is the number of observations
 #' @param lambda is the mean
 #' @param D is the dispersion index
