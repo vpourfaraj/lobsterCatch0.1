@@ -22,7 +22,6 @@ updateGrid    = function(lobsterCoordinates,trapCoordinates, trapCatch, radius_o
   trappedLobster<- vector(mode = 'numeric', length = numberOfLobsters)
 
   for( lobsterIndex in 1:numberOfLobsters ){
-    print(lobsterIndex)
     xOld <- lobsterCoordinates[lobsterIndex,1]
     yOld <- lobsterCoordinates[lobsterIndex,2]
     trapped <- lobsterCoordinates[lobsterIndex,3]
