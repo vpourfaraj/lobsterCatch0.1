@@ -1,5 +1,8 @@
+# After finishing documenting a function run the follwoing code to regenrate .Rd file
+devtools::document()
+
 #pushing the changes to github
-# After any change to the code and in order to make sure changes are included: upon R restart 
+# After any change to the code and in order to make sure changes are included: upon R restart
 require(lobsterCatch)
 require(devtools)
 load_all('FilePathTogitrepoOnMyCPU/lobsterCatch')
@@ -25,7 +28,7 @@ p$ntrapsstart = length(p$trapEastStart)
 
 p$saturationThresholdStart = 5
 p$how_closeStart = 1
-p$dstepstart = 5 
+p$dstepstart = 5
 
 p$niter =100
 
@@ -101,7 +104,7 @@ p$ntrapsstart = length(p$trapEastStart)
 
 p$saturationThresholdStart = 5
 p$how_closeStart = .01
-p$dstepstart = 5 
+p$dstepstart = 5
 p$trapSaturationStart = T
 
 p$niter =100
@@ -122,11 +125,11 @@ for(j in 1:length(smult_start)){
     if(any(a$traps>0)) max.catchSat[[i]] = apply(a$traps,2,max)
   }
   max.catchSat = do.call(rbind,max.catchSat)
-  
+
   if(p$ntrapsstart==1) meanSat = apply(max.catchSat,2,mean)
   if(p$ntrapsstart>1) meanSat = apply(max.catchSat,1,mean)
   meanCatchWithSat = c(meanCatchWithSat,mean(meanSat)  )
-  
+
   if(p$ntrapsstart==1) dispSat = apply(max.catchSat,2,dispersion)
   if(p$ntrapsstart>1) dispSat = apply(max.catchSat,1,dispersion)
   dispersionSaturation = c(dispersionSaturation,mean(na.omit(dispSat))  )
@@ -158,7 +161,7 @@ p$ntrapsstart = length(p$trapEastStart)
 
 p$saturationThresholdStart = 5
 p$how_closeStart = 1
-p$dstepstart = 5 
+p$dstepstart = 5
 p$trapSaturationStart = T
 p$niter =100
 
@@ -191,19 +194,19 @@ for(j in 1:length(lambda)){
     }
     max.catchSat = do.call(rbind,max.catchSat)
     max.catchnoSat = do.call(rbind,max.catchnoSat)
-    
+
     if(p$ntrapsstart==1) meanSat = apply(max.catchSat,2,mean)
     if(p$ntrapsstart>1) meanSat = apply(max.catchSat,1,mean)
     meanCatchWithSat = c(meanCatchWithSat,mean(meanSat)  )
-    
+
     if(p$ntrapsstart==1) meanNoSat = apply(max.catchnoSat,2,mean)
     if(p$ntrapsstart>1) meanNoSat = apply(max.catchnoSat,1,mean)
     meanCatchNoSat = c(meanCatchNoSat,mean(meanNoSat)  )
-    
+
     if(p$ntrapsstart==1) dispSat = apply(max.catchSat,2,dispersion)
     if(p$ntrapsstart>1) dispSat = apply(max.catchSat,1,dispersion)
     dispersionSaturation = c(dispersionSaturation,mean(na.omit(dispSat))  )
-    
+
     if(p$ntrapsstart==1) dispnoSat = apply(max.catchnoSat,2,dispersion)
     if(p$ntrapsstart>1) dispnoSat = apply(max.catchnoSat,1,dispersion)
     dispersionNoSaturation = c(dispersionNoSaturation, mean(na.omit(dispnoSat))  )
@@ -233,7 +236,7 @@ p$ntrapsstart = length(p$trapEastStart)
 
 p$saturationThresholdStart = 5
 p$how_closeStart = .01
-p$dstepstart = 5 
+p$dstepstart = 5
 p$trapSaturationStart = T
 
 p$niter =100
@@ -254,11 +257,11 @@ for(j in 1:length(smult_start)){
     if(any(a$traps>0)) max.catchSat[[i]] = apply(a$traps,2,max)
   }
   max.catchSat = do.call(rbind,max.catchSat)
-  
+
   if(p$ntrapsstart==1) meanSat = apply(max.catchSat,2,mean)
   if(p$ntrapsstart>1) meanSat = apply(max.catchSat,1,mean)
   meanCatchWithSat = c(meanCatchWithSat,mean(meanSat)  )
-  
+
   if(p$ntrapsstart==1) dispSat = apply(max.catchSat,2,dispersion)
   if(p$ntrapsstart>1) dispSat = apply(max.catchSat,1,dispersion)
   dispersionSaturation = c(dispersionSaturation,mean(na.omit(dispSat))  )
@@ -296,7 +299,7 @@ p$ntrapsstart = length(p$trapEastStart)
 
 p$saturationThresholdStart = 5
 p$how_closeStart = .01
-p$dstepstart = 5 
+p$dstepstart = 5
 p$trapSaturationStart = T
 
 p$niter =100
@@ -317,11 +320,11 @@ for(j in 1:length(smult_start)){
     if(any(a$traps>0)) max.catchSat[[i]] = apply(a$traps,2,max)
   }
   max.catchSat = do.call(rbind,max.catchSat)
-  
+
   if(p$ntrapsstart==1) meanSat = apply(max.catchSat,2,mean)
   if(p$ntrapsstart>1) meanSat = apply(max.catchSat,1,mean)
   meanCatchWithSat = c(meanCatchWithSat,mean(meanSat)  )
-  
+
   if(p$ntrapsstart==1) dispSat = apply(max.catchSat,2,dispersion)
   if(p$ntrapsstart>1) dispSat = apply(max.catchSat,1,dispersion)
   dispersionSaturation = c(dispersionSaturation,mean(na.omit(dispSat))  )
