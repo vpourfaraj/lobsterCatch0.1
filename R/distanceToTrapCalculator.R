@@ -1,5 +1,4 @@
-#' This function calculates the Euclidean distance between trap(s) and
-#' individual lobsters
+#' This function calculates the Euclidean distance between trap(s) and each lobster
 #' @export
 distanceToTrapCalculator<- function(Lobster,trap = x(5,5)){
   xLobster = Lobster[1]
