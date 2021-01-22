@@ -2,7 +2,7 @@ require(bio.lobster)
 require(parallel)
 require(lobsterCatch)
 require(devtools)
-load_all('~/git/lobsterCatch')
+load_all('D:/git/lobsterCatch')
 
 arena = matrix(0,200,200)
 y=x=seq(5,195,10)
@@ -41,6 +41,13 @@ for(i in 1:length(smult_start)){
 	pp$smult = smult_start[[i]]
 	plist[[i]]=pp
 }
-s = Sys.time()
+#this works in linux
 out = mclapply(X=plist, FUN=SimulateLobsterMovement, mc.cores=length(plist))
-Sys.time()-s
+
+#in windows machine
+
+nCores = detectCores()
+cl <- makeCluster(nCores)
+clusterExport(cl,{require(lobsterCatch)
+				  require(bio.lobser)
+				  })

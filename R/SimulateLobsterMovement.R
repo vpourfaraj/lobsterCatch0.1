@@ -5,6 +5,7 @@
 #' @export
 SimulateLobsterMovement <- function(p=p,plot=F) {
   with(p,{
+    start = Sys.time()
     outputs.to.return = list()
     for(k in 1:p$realizations){
     outputs = list()
@@ -52,6 +53,7 @@ SimulateLobsterMovement <- function(p=p,plot=F) {
       outputs$lobsters = outmove
     outputs.to.return[[k]] = outputs
        }
+       print(Sys.time()-start)
     return(outputs.to.return)
   
   })}
