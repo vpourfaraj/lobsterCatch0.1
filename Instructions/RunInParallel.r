@@ -26,10 +26,10 @@ p$how_closeStart = .01
 p$dstepstart = 5 
 p$trapSaturationStart = T
 
-p$tSteps = 50
+p$tSteps = 1
 
 
-p$realizations = 100
+p$realizations = 1
 dispersionSaturation = c()
 meanCatchWithSat = c()
 smult_start = seq(.9,1,length.out=8)
@@ -41,5 +41,6 @@ for(i in 1:length(smult_start)){
 	pp$smult = smult_start[[i]]
 	plist[[i]]=pp
 }
-
+s = Sys.time()
 out = mclapply(X=plist, FUN=SimulateLobsterMovement, mc.cores=length(plist))
+Sys.time()-s
