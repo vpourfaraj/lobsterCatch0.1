@@ -29,7 +29,7 @@ p$trapSaturationStart = T
 p$tSteps = 50
 
 
-p$realizations = 1
+p$realizations = 100
 dispersionSaturation = c()
 meanCatchWithSat = c()
 smult_start = seq(.9,1,length.out=8)
@@ -47,8 +47,13 @@ out = mclapply(X=plist, FUN=SimulateLobsterMovement, mc.cores=length(plist))
 
 #in windows machine
 
-nCores = detectCores()
+nCores = 8
 cl <- makeCluster(nCores)
-clusterExport(cl,{require(lobsterCatch)
-				  require(bio.lobser)
+clusterEvalQ(cl,{require(lobsterCatch)
+				  require(bio.lobster)
 				  })
+s=Sys.time()
+out = parLapply(cl,plist,SimulateLobsterMovement )
+Sys.time()-s
+
+stopCluster(cl)
