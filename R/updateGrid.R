@@ -17,12 +17,14 @@ updateGrid    = function(lobsterCoordinates,trapCoordinates, trapCatch, radius_o
 
 
   numberOfLobsters <- nrow(lobsterCoordinates)
+
+  if(numberOfLobsters>0){
   xNew <- vector(mode = 'numeric', length = numberOfLobsters)
   yNew <- vector(mode = 'numeric', length = numberOfLobsters)
   trappedLobster<- vector(mode = 'numeric', length = numberOfLobsters)
 
   for( lobsterIndex in 1:numberOfLobsters ){
-    xOld <- lobsterCoordinates[lobsterIndex,1]
+      xOld <- lobsterCoordinates[lobsterIndex,1]
     yOld <- lobsterCoordinates[lobsterIndex,2]
     trapped <- lobsterCoordinates[lobsterIndex,3]
     if(trapped==1){
@@ -62,6 +64,6 @@ updateGrid    = function(lobsterCoordinates,trapCoordinates, trapCatch, radius_o
 
   updatedGrid <- data.frame(EASTING = xNew, NORTHING = yNew, trapped = trappedLobster)
   return(list(updatedGrid, trapCatch))
-
+}
 }
 
