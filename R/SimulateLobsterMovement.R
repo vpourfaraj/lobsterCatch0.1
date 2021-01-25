@@ -5,9 +5,10 @@
 #' @export
 SimulateLobsterMovement <- function(p=p,plot=F) {
   with(p,{
-    start = Sys.time()
+    
     outputs.to.return = list()
     for(k in 1:p$realizations){
+      start = Sys.time()
     outputs = list()
     initialGrid = rpoisD(n=ngrids,lambda=initlambda, D = initD)
     LobsterStart = data.frame(EASTING = rep(1:ncolgrids,times=nrowgrids), NORTHING = rep(1:nrowgrids,each=ncolgrids), Lobs = initialGrid)
@@ -50,10 +51,11 @@ SimulateLobsterMovement <- function(p=p,plot=F) {
       outmove$I = rep(1:nrow(tt), times=tSteps)
       outtraps = as.data.frame(do.call(rbind, trapCatch))
       outputs$traps = outtraps
-      outputs$lobsters = outmove
+      outputs$lobsters = outmove  
     outputs.to.return[[k]] = outputs
+       print(paste('Timing', Sys.time()-start, 'for iteration #',k,sep=" "))
        }
-       print(Sys.time()-start)
+       
     return(outputs.to.return)
   
   })}
