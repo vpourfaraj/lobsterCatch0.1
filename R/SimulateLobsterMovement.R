@@ -9,7 +9,7 @@ SimulateLobsterMovement <- function(p=p,plot=F) {
     for(k in 1:p$realizations){
       start = Sys.time()
     outputs = list()
-    initialGrid = rpoisD(n=ngrids,lambda=initlambda, D = initD)
+      initialGrid = rpoisD(n=ngrids,lambda=initlambda, D = initD)
     LobsterStart = data.frame(EASTING = rep(1:ncolgrids,times=nrowgrids), NORTHING = rep(1:nrowgrids,each=ncolgrids), Lobs = initialGrid)
     LobsterStart <- subset(LobsterStart,Lobs>0)
     if(nrow(LobsterStart)>0) {
@@ -22,7 +22,6 @@ SimulateLobsterMovement <- function(p=p,plot=F) {
       coordinatesOverTime <- list()
       coordinatesOverTime[[1]] <- initialxyCoordinate
       currentZoI<- currentZoIInit
-      s =  smult
       ntraps = ntrapsstart
       trapCoordinates = data.frame(EASTING=trapEastStart,NORTHING=trapNorthStart)
       trapCatch = list()
@@ -31,18 +30,11 @@ SimulateLobsterMovement <- function(p=p,plot=F) {
       outputs$lobsters = data.frame(EASTING=0,NORTHING=0,trapped=0,T=0,I=0)
  
      for(t in 2:tSteps){
-        if(t>2) currentZoI<- currentZoI * s
+        if(t>2) currentZoI<- currentZoI * smult
+     
         ko = updateGrid( lobsterCoordinates = coordinatesOverTime[[t-1]], trapCoordinates=trapCoordinates, trapCatch=trapCatch[[t-1]], currentZoI = currentZoI,saturationThreshold=saturationThresholdStart,trapSaturation= trapSaturationStart, how_close=how_closeStart,dstep=dstepstart)
         coordinatesOverTime[[t]] <- ko[[1]]
         trapCatch[[t]] <- ko[[2]]
-        plot=FALSE
-        if(plot){
-          par( mfrow=c(1,2) ) # create a plot with 1 row and 2 columns to show plots side by side
-          plot( coordinatesOverTime[[t-1]], xlim = c(0,10), ylim = c(0,10), main = paste0('Time = ', t-1) )
-          points(x = 5, y = 5, col = 'red')
-          plot( coordinatesOverTime[[t]],   xlim = c(0,10), ylim = c(0,10), main = paste0('Time = ', t) )
-          points(x = 5, y = 5, col = 'red')
-           }
         }
       }
       outmove = do.call(rbind,coordinatesOverTime)
