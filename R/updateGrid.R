@@ -34,7 +34,6 @@ updateGrid    = function(lobsterCoordinates,trapCoordinates, trapCatch, radius_o
       next()
     }
     distanceToTrap = distanceClosestTrap(lob_loc = c(xOld,yOld), trap_loc = trapCoordinates[,c(1,2)] )
-
     if( distanceToTrap[1] > radius_of_influence){
       temp <- randomMove(xLobster = xOld , yLobster = yOld , dStep = dstep)
       xNew[lobsterIndex] <- temp$EASTING
