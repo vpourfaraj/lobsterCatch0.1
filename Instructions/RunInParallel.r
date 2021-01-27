@@ -81,7 +81,7 @@ require(bio.lobster)
 require(parallel)
 require(lobsterCatch)
 require(devtools)
-load_all('~/git/lobsterCatch')
+load_all('D:/git/lobsterCatch')
 
 arena = matrix(0,200,200)
 y=x=seq(5,195,10)
@@ -106,35 +106,43 @@ p$dstepstart = 5
 p$trapSaturationStart = T
 
 p$tSteps = 100
+NVariation = 9
+smult_start = seq(.8,1,length.out=NVariation)
 
-smult_start = seq(.9,1,length.out=8)
-
+nCores = detectCores()-1
 plist = list()
 
+splits = nCores/NVariation
+Realizations = 100
+smult_start = rep(smult_start,each=splits)
+p$realizations = round(Realizations / splits)
 for(i in 1:length(smult_start)){
 	pp = p
 	pp$smult = smult_start[[i]]
 	plist[[i]]=pp
 }
 
-nCores = 8
-cl <- makeCluster(nCores)
-clusterEvalQ(cl,{require(lobsterCatch)
-				  require(bio.lobster)
-				  })
-s=Sys.time()
-out = parLapply(cl,plist,SimulateLobsterMovement )
-Sys.time()-s
-
-nCores = detectCores()
 cl <- makeCluster(nCores)
 clusterEvalQ(cl,{require(devtools)
-			load_all('~/git/lobsterCatch')
-			sink(paste0("~/tmp/output", Sys.getpid(), ".txt"))
+			load_all('D:/git/lobsterCatch')
+			sink(paste0("D:/tmp/output", Sys.getpid(), ".txt"))
 				  })
 
 out = parLapply(cl,plist, SimulateLobsterMovement)
 stopCluster(cl)
-saveRDS(out,'D:/Projects/LobsterCatchSimShrinkage.rds')
+saveRDS(out,'D:/Projects/LobsterCatchSimShrinkage2.rds')
 
 
+
+outM = list()
+outD = list()
+for(i in 1:length(smult_start)){
+g = out[[i]]
+g1 = lapply(g,mtr)
+outM[[i]] = unlist(lapply(g1,mean))
+outD[[i]] = unlist(lapply(g1,dispersion))
+} 
+
+unlist(lapply(outM,mean))
+unlist(lapply(outD,mean)))
+unlist(lapply(outD,mean))
