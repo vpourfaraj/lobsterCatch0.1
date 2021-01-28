@@ -2,12 +2,15 @@
 % Please edit documentation in R/distanceToTrapCalculator.R
 \name{distanceToTrapCalculator}
 \alias{distanceToTrapCalculator}
-\title{This function calculates the Euclidean distance between trap(s) and
-individual lobsters}
+\title{This function calculates the Euclidean distance between trap(s) and each individual lobster}
 \usage{
 distanceToTrapCalculator(Lobster, trap = x(5, 5))
 }
+\arguments{
+\item{Lobster}{is the matrix of lobster coordinates}
+
+\item{trap}{is the location of the trap}
+}
 \description{
-This function calculates the Euclidean distance between trap(s) and
-individual lobsters
+This function calculates the Euclidean distance between trap(s) and each individual lobster
 }

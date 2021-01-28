@@ -15,9 +15,6 @@ trapInPath(loc1, loc2, trap_loc, how_close = 0.1)
 
 \item{how_close}{set the area of trap within which the catch occurs, the default value is 0.1}
 }
-\value{
-a vector of locations and shows if any lobster is being trapped or not
-}
 \description{
 This function determines if lobster passes through a trap and determines if it is caught
 }

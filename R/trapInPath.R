@@ -3,7 +3,6 @@
 #' @param loc2 is the location of lobster at the end of each time step
 #' @param trap_loc is the location of trap
 #' @param how_close set the area of trap within which the catch occurs, the default value is 0.1
-#' @return a vector of locations and shows if any lobster is being trapped or not
 #' @export
 trapInPath = function(loc1, loc2, trap_loc,how_close=0.1){
   x = seq(loc1[1],loc2[1],length.out = 10)

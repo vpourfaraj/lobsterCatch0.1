@@ -2,8 +2,7 @@
 % Please edit documentation in R/rpoisD.R
 \name{rpoisD}
 \alias{rpoisD}
-\title{This function generates either a Poisson or a negative binomial distribution of lobsters on the sea bed
-dispersion function calculates variance:Mean ratio}
+\title{This function generates either a Poisson or a negative binomial distribution of lobsters on the sea bed}
 \usage{
 rpoisD(n, lambda, D = 1)
 }
@@ -17,9 +16,8 @@ rpoisD(n, lambda, D = 1)
 \item{sz}{this puts the overdispersion in terms of lambda(mean) and returns the appropriate size for Binomial distribution}
 }
 \value{
-a vector
+a vector of integers that is used as initial distribution of lobsters on the seabed.
 }
 \description{
 This function generates either a Poisson or a negative binomial distribution of lobsters on the sea bed
-dispersion function calculates variance:Mean ratio
 }

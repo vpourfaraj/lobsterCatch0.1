@@ -2,8 +2,7 @@
 % Please edit documentation in R/directionalMove.R
 \name{directionalMove}
 \alias{directionalMove}
-\title{This function moves the lobster for a fixed length toward the trap (+some randomness)
-This is performed only when a lobster is within the bait influence}
+\title{This function moves the lobster a fixed distance which will be toward the trap (+some randomness) if within a zone of attraction. The closer the lobster is to the trap the smaller the random component of movement.}
 \usage{
 directionalMove(
   xLobster,
@@ -17,18 +16,22 @@ directionalMove(
 )
 }
 \arguments{
+\item{xLobster}{location lobster in x direction}
+
+\item{yLobster}{location of a lobster in y direction}
+
 \item{dStep}{is how much a lobster moves in each time step}
 
-\item{ZoI}{is trap's zone of influence which gets updated in each timestpe}
+\item{distanceToTrap}{how much influence the trap has on movement}
 
-\item{default}{value for radius of influence is 15}
+\item{xtrap}{location of the closest trap in the x direction}
 
-\item{thetaT}{calculates angle to the trap}
-}
-\value{
-a list of new location for each individual lobster
+\item{ytrap}{location of the trap in y direction}
+
+\item{radius_of_influence}{how large is the attraction zone for the trap at t0}
+
+\item{ZoI}{is trap's zone of influence which gets updated in each timestep}
 }
 \description{
-This function moves the lobster for a fixed length toward the trap (+some randomness)
-This is performed only when a lobster is within the bait influence
+This function moves the lobster a fixed distance which will be toward the trap (+some randomness) if within a zone of attraction. The closer the lobster is to the trap the smaller the random component of movement.
 }

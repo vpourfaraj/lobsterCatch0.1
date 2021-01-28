@@ -4,7 +4,6 @@
 #' @param D is the dispersion index
 #' @param sz this puts the overdispersion in terms of lambda(mean) and returns the appropriate size for Binomial distribution
 #' @return a vector of integers that is used as initial distribution of lobsters on the seabed.
-#' @export
 
 rpoisD<-function (n, lambda,D=1) {
   if (D==1){

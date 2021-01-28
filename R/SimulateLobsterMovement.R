@@ -1,7 +1,6 @@
 #' This function moves lobsters based on the provided parameters.
 #' @param p can be modified to check the impact of each factor (i.e p$smult = 0.9 sets the shrinkage factor)
 #' @param plot is set to false by default
-#' @return a list
 #' @export
 SimulateLobsterMovement <- function(p=p,plot=F) {
   with(p,{

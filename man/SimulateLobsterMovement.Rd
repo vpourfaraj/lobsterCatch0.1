@@ -11,9 +11,6 @@ SimulateLobsterMovement(p = p, plot = F)
 
 \item{plot}{is set to false by default}
 }
-\value{
-a list
-}
 \description{
 This function moves lobsters based on the provided parameters.
 }
