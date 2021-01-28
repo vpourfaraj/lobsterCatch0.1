@@ -9,6 +9,10 @@ load_all('FilePathTogitrepoOnMyCPU/lobsterCatch')
 # and then load the latest version of the package
 install_github('vpourfaraj/lobsterCatch',ref='main')
 
+###To Clone the package's GitHub repository to your computer via RStudio
+#File > New Project > Version Control > Git.
+#paste: https://github.com/vpourfaraj/lobsterCatch.git
+
 
 #initialize a parameter file to pass info into the code and then put all into a function
 

@@ -7,10 +7,25 @@
 #' @param r is the instantaneous rate of change in qo with respect to Ct
 #' @return the probability of entry to trap
 #' @export
-catchability<- function(q0= 0.5,qmin=0, saturationThreshold=5, Ct=0 ){
-  r = (log(0.01) - log(q0 - qmin))/- saturationThreshold
-  qo = (q0-qmin) / exp(r*Ct) + qmin
-  return(qo)
+catchability<- function(q0= 0.5,qmin=0, saturationThreshold=5, Ct=0, lobSize){
+  
+  if( is.null(lobSize) ){
+    r = (log(0.01) - log(q0 - qmin))/- saturationThreshold
+    qo = (q0-qmin) / exp(r*Ct) + qmin
+    return(qo)
+  }else{
+    #When lengthBased=TRUE and caught lobster is larger than 115-> q0=0
+    temp <- unlist( strsplit( lobSize, split = '-CL' ) )
+    temp <- temp[2:length(temp)]
+    if( any(temp)  > 115 ){
+      qo = 0
+      return(qo)
+    }else{
+      r = (log(0.01) - log(q0 - qmin))/- saturationThreshold
+      qo = (q0-qmin) / exp(r*Ct) + qmin
+      return(qo)
+    }
+    
+  }
 }
-
 
