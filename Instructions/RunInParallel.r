@@ -2,7 +2,9 @@ require(bio.lobster)
 require(parallel)
 require(lobsterCatch)
 require(devtools)
-load_all('~/git/lobsterCatch')
+require(geosphere)
+require(bio.utilities)
+load_all('D:/git/lobsterCatch')
 
 arena = matrix(0,200,200)
 y=x=seq(5,195,10)
@@ -82,7 +84,6 @@ require(parallel)
 require(lobsterCatch)
 require(devtools)
 load_all('D:/git/lobsterCatch')
-
 arena = matrix(0,200,200)
 y=x=seq(5,195,10)
 traps = expand.grid(x,y)
@@ -113,7 +114,7 @@ nCores = detectCores()-1
 plist = list()
 
 splits = nCores/NVariation
-Realizations = 100
+Realizations = 21
 smult_start = rep(smult_start,each=splits)
 p$realizations = round(Realizations / splits)
 for(i in 1:length(smult_start)){
@@ -130,19 +131,20 @@ clusterEvalQ(cl,{require(devtools)
 
 out = parLapply(cl,plist, SimulateLobsterMovement)
 stopCluster(cl)
-saveRDS(out,'D:/Projects/LobsterCatchSimShrinkage2.rds')
+saveRDS(out,'D:/Projects/LobsterCatchSimShrinkageFixed.rds')
 
-
+mtr = function(x) apply(x$traps,2,max)
 
 outM = list()
 outD = list()
-for(i in 1:length(smult_start)){
-g = out[[i]]
-g1 = lapply(g,mtr)
-outM[[i]] = unlist(lapply(g1,mean))
-outD[[i]] = unlist(lapply(g1,dispersion))
-} 
 
-unlist(lapply(outM,mean))
-unlist(lapply(outD,mean)))
-unlist(lapply(outD,mean))
+oo = list()
+iu = dim_list(out)
+for(i in 1:nrow(iu)){
+	o = lapply(out[[i]],mtr)
+	outM[[i]] = unlist(lapply(o,mean))
+	outD[[i]] = unlist(lapply(o,dispersion))
+	}
+
+f = data.frame(Mean = unlist(outM),Dis = unlist(outD),Smul = rep(smult_start,each=p$realizations)	
+	

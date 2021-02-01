@@ -7,10 +7,10 @@
 #' @param r is the instantaneous rate of change in qo with respect to Ct
 #' @return the probability of entry to trap
 #' @export
-catchability<- function(q0= 0.5,qmin=0, saturationThreshold=5, Ct=0, lobSize){
+catchability<- function(q0= 0.5,qmin=0, saturationThreshold=5, Ct=0, lobSize=NULL){
   
   if( is.null(lobSize) ){
-    r = (log(0.01) - log(q0 - qmin))/- saturationThreshold
+    r = (log(0.01) - log(q0 - qmin))/(saturationThreshold*-1)
     qo = (q0-qmin) / exp(r*Ct) + qmin
     return(qo)
   }else{
@@ -21,7 +21,7 @@ catchability<- function(q0= 0.5,qmin=0, saturationThreshold=5, Ct=0, lobSize){
       qo = 0
       return(qo)
     }else{
-      r = (log(0.01) - log(q0 - qmin))/- saturationThreshold
+      r = (log(0.01) - log(q0 - qmin))/(saturationThreshold*-1)
       qo = (q0-qmin) / exp(r*Ct) + qmin
       return(qo)
     }

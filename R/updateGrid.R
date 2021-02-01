@@ -43,9 +43,7 @@ updateGrid    = function(lobsterCoordinates,trapCoordinates, trapCatch, radius_o
       temp <- directionalMove(xLobster = xOld , yLobster = yOld , distanceToTrap = distanceToTrap[1], radius_of_influence = radius_of_influence, dStep = dstep, ZoI = currentZoI)
       xNew[lobsterIndex] <- temp$EASTING
       yNew[lobsterIndex] <- temp$NORTHING
-    }
-
-    trappedQ = trapInPath(loc1 = c(xOld,yOld), loc2 = c(xNew[lobsterIndex],yNew[lobsterIndex]), trap_loc = trapCoordinates[distanceToTrap[2],],how_close=how_close)
+   trappedQ = trapInPath(loc1 = c(xOld,yOld), loc2 = c(xNew[lobsterIndex],yNew[lobsterIndex]), trap_loc = trapCoordinates[distanceToTrap[2],],how_close=how_close)
     if(trappedQ[3]==1) {
       if(trapSaturation) pC = catchability(q0= q0,qmin=qmin, saturationThreshold=saturationThreshold, Ct=trapCatch[distanceToTrap[2]] )
       if(!trapSaturation) pC = q0
@@ -58,7 +56,7 @@ updateGrid    = function(lobsterCoordinates,trapCoordinates, trapCatch, radius_o
       }
     }
   }
-
+}
 
 
   updatedGrid <- data.frame(EASTING = xNew, NORTHING = yNew, trapped = trappedLobster)
