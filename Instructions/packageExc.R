@@ -13,8 +13,6 @@ load_all('FilePathTogitrepoOnMyCPU/lobsterCatch')
 install_github('vpourfaraj/lobsterCatch',ref='main')
 
 
-
-
 #initialize a parameter file to pass info into the code and then put all into a function
 
 p = list()
