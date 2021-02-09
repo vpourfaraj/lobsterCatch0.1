@@ -2,6 +2,8 @@
 devtools::document()
 #Once the package is installed, data in extdata folder can be accessed using this code:
 system.file("extdata", "LobsterSizeFreqs.csv", package = "lobsterCatch")
+#To make Vignettes, run the follwing code which creates an Rmarkdown file. The templete file can then be used to provide instructions.
+usethat::use_vignette("introduction")
 
 #pushing the changes to github
 ###To Clone the package's GitHub repository to your computer via RStudio
