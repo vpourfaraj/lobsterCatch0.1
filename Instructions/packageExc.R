@@ -1,5 +1,7 @@
 # After finishing documenting a function run the follwoing code to regenrate .Rd file
 devtools::document()
+#making external data availabe to the packge
+system.file("extdata", "LobsterSizeFreqs.csv", package = "lobsterCatch")
 
 #pushing the changes to github
 ###To Clone the package's GitHub repository to your computer via RStudio
