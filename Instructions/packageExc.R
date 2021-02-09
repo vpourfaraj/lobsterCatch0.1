@@ -1,11 +1,15 @@
 # After finishing documenting a function run the follwoing code to regenrate .Rd file
 devtools::document()
+
 #Once the package is installed, data in extdata folder can be accessed using this code:
 system.file("extdata", "LobsterSizeFreqs.csv", package = "lobsterCatch")
+
 #To make Vignettes, run the follwing code which creates an Rmarkdown file. The templete file can then be used to provide instructions.
 usethat::use_vignette("introduction")
 
-#pushing the changes to github
+# In order to load the latest version of the package:
+devtools::install_github('vpourfaraj/lobsterCatch',ref='main')
+
 ###To Clone the package's GitHub repository to your computer via RStudio
 #File > New Project > Version Control > Git.
 #paste: https://github.com/vpourfaraj/lobsterCatch.git
@@ -14,9 +18,7 @@ require(lobsterCatch)
 require(devtools)
 load_all('FilePathTogitrepoOnMyCPU/lobsterCatch')
 
-# In order to load the latest version of the package:
-library(devtools)
-install_github('vpourfaraj/lobsterCatch',ref='main')
+
 
 
 #initialize a parameter file to pass info into the code and then put all into a function
