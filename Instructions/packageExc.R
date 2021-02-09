@@ -1,6 +1,6 @@
 # After finishing documenting a function run the follwoing code to regenrate .Rd file
 devtools::document()
-#making external data availabe to the packge
+#making external data availabe to the package
 system.file("extdata", "LobsterSizeFreqs.csv", package = "lobsterCatch")
 
 #pushing the changes to github
