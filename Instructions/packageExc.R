@@ -13,7 +13,9 @@ usethat::use_vignette("introduction")
 require(lobsterCatch)
 require(devtools)
 load_all('FilePathTogitrepoOnMyCPU/lobsterCatch')
-# and then load the latest version of the package
+
+# In order to load the latest version of the package:
+library(devtools)
 install_github('vpourfaraj/lobsterCatch',ref='main')
 
 
