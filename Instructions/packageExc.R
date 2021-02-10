@@ -3,7 +3,7 @@ devtools::install_github('vpourfaraj/lobsterCatch',ref='main')
 #Once the package is installed, data in extdata folder can be accessed using this code:
 system.file("extdata", "LobsterSizeFreqs.csv", package = "lobsterCatch")
 
-
+library(lobsterCatch)
 #initialize a parameter file to pass info into the code and then put all into a function
 
 p = list()
@@ -26,7 +26,7 @@ p$dstepstart = 5
 
 p$niter =100
 
-
+p$realizations=20
 
 
 #run the model

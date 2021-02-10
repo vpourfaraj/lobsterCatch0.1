@@ -2,8 +2,8 @@
 
 require(lobsterCatch)
 require(devtools)
-load_all('D:/git/lobsterCatch')
 require(geosphere)
+load_all('D:/git/lobsterCatch')
 
 arena = matrix(0,12,12)
 y=x=seq(1,11,2)
@@ -24,7 +24,7 @@ p$ntrapsstart = length(p$trapEastStart)
 
 p$saturationThresholdStart = 5
 p$how_closeStart = .1
-p$dstepstart = 5 
+p$dstepstart = 5
 p$trapSaturationStart = T
 
 p$tSteps = 50
