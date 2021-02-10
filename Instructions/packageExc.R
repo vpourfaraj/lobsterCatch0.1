@@ -1,3 +1,8 @@
+# In order to load the latest version of the package:
+devtools::install_github('vpourfaraj/lobsterCatch',ref='main')
+#Once the package is installed, data in extdata folder can be accessed using this code:
+system.file("extdata", "LobsterSizeFreqs.csv", package = "lobsterCatch")
+
 
 #initialize a parameter file to pass info into the code and then put all into a function
 
