@@ -24,15 +24,15 @@ p$saturationThresholdStart = 5
 p$how_closeStart = 1
 p$dstepstart = 5
 
-p$niter =100
+p$niter =100 #it's not being used anymore?
 
-p$realizations=20
-
+p$realizations=5 #number of iterations/simulations
+p$tSteps=10  #timesteps per iteration
 
 #run the model
 a = SimulateLobsterMovement(p=p)
 
-plot(1:p$niter,a$traps[,1],xlab='Time',ylab='N Caught',ylim=c(0,15))
+plot(1:p$niter,a$traps[,1],xlab='Time',ylab='N Caught',ylim=c(0,200))
 
 #lets change a parameter
 p$saturationThresholdStart=10
