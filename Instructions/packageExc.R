@@ -33,7 +33,10 @@ p$lengthBased= TRUE
 #run the model
 a = SimulateLobsterMovement(p=p)
 
+
 plot(1:p$niter,a$traps[,3],xlab='Time',ylab='N Caught')
+#=======
+plot(1:p$tSteps,a[[1]]$traps[,3],xlab='Time',ylab='N Caught')
 
 #lets change a parameter
 p$saturationThresholdStart=10
