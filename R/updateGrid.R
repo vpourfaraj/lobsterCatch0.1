@@ -3,16 +3,17 @@
 #' @param lobsterCoordinates is the coordinates (x,y) of each lobster at each time step
 #' @param trapCoordinates is the coordinate of trap(s)
 #' @param trapCatch number of lobsters caught
+#' @param lobSize size of caught lobster
 #' @param radius_of_influence is set to 15 by default
 #' @param dstep is set to 5 by default
-#' @param is the bait's area of influence at each timestpe
+#' @param currentZoI is the bait's area of influence at each timestpe
 #' @param how_close is set to 0.1 by default
 #' @param q0 is set to 0.5 by default
 #' @param qmin is set to 0 by default
 #' @param saturationThresholdis set to 5 by default
-#' @param  trapSaturation is set to TRUE by default
-#' @param  lengthBased is set to FALSE by default
-#' @return a list of new coordinates and number of catch
+#' @param trapSaturation is set to TRUE by default
+#' @param lengthBased is set to FALSE by default
+#' @return a list of new coordinates, number of catch and their size
 #' @export
 updateGrid    = function(lobsterCoordinates,trapCoordinates, trapCatch, lobSize, radius_of_influence=15, dstep = 5, currentZoI, how_close=0.1, q0=.5, qmin=0, saturationThreshold=5, trapSaturation=T, lengthBased = F){
 
