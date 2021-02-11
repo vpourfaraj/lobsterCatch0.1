@@ -9,6 +9,7 @@ updateGrid(
   lobsterCoordinates,
   trapCoordinates,
   trapCatch,
+  lobSize,
   radius_of_influence = 15,
   dstep = 5,
   currentZoI,
@@ -16,7 +17,8 @@ updateGrid(
   q0 = 0.5,
   qmin = 0,
   saturationThreshold = 5,
-  trapSaturation = T
+  trapSaturation = T,
+  lengthBased = F
 )
 }
 \arguments{
@@ -36,7 +38,9 @@ updateGrid(
 
 \item{qmin}{is set to 0 by default}
 
-\item{trapSaturation}{is set to True by default}
+\item{trapSaturation}{is set to TRUE by default}
+
+\item{lengthBased}{is set to FALSE by default}
 
 \item{is}{the bait's area of influence at each timestpe}
 
