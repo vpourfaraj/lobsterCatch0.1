@@ -10,7 +10,7 @@ p = list()
 p$nrowgrids = 10
 p$ncolgrids = 10
 p$ngrids=p$nrowgrids * p$ncolgrids
-p$initlambda=.1
+p$initlambda=.5
 p$initD = 3
 p$smult = 0.993
 p$currentZoIInit = 1
@@ -24,7 +24,6 @@ p$saturationThresholdStart = 5
 p$how_closeStart = 1
 p$dstepstart = 5
 
-#it's not being used anymore? p$niter =100
 
 p$realizations=10 #number of iterations/simulations
 p$tSteps=50  #timesteps per iteration
@@ -33,21 +32,27 @@ p$lengthBased= TRUE
 #run the model
 a = SimulateLobsterMovement(p=p)
 
-plot(1:p$tSteps,a[[1]]$traps[,1],xlab='Time',ylab='Number of lobsters Caught',ylim = c(0,10))
+plot(1:p$tSteps,a[[1]]$traps[,3],xlab='Time',ylab='Number of lobsters Caught',ylim = c(0,10))
 
 #lets change a parameter
 p$saturationThresholdStart=30
 
+# to be investigated: the impact of sat treshhold is not really evident when
+#p$lengthBased= TRUE
+
+
 # rerun
 b = SimulateLobsterMovement(p=p)
 
-lines(1:p$tSteps,b[[1]]$traps[,1])
+lines(1:p$tSteps,b[[1]]$traps[,3])
 
 #or just run it a bunch of times since the model is stochastic
 p$saturationThresholdStart = 5
 time.to.max=list()
 max.catch = list()
 realizations = 50
+p$niter =20
+
 plot(1:p$niter,xlab='Time',ylab='N Caught',ylim=c(0,15),type='n')
 
 for(i in 1:realizations){
@@ -55,8 +60,8 @@ for(i in 1:realizations){
   for(j in 1:ncol(a$traps)){
     lines(1:p$niter,a$traps[,j])
   }
-  time.to.max[[i]] = apply(a$traps,2, which.max)
-  max.catch[[i]] = apply(a$traps,2,max)
+  time.to.max[[i]] = apply(a[[1]]$traps,2, which.max)
+  max.catch[[i]] = apply(a[[1]]$traps,2,max)
 }
 time.to.max = do.call(rbind,time.to.max)
 max.catch = do.call(rbind,max.catch)
@@ -66,24 +71,25 @@ disp = apply(max.catch,1,dispersion)
 mean(disp)
 
 
-#next trial changing saturation
+#next trial changing saturation, not working properly as of Feb11 after lengthbased added
 p$saturationThresholdStart = 8
 time.to.max8=c()
 max.catch8 = c()
 time.to.max8=list()
 max.catch8 = list()
-realizations = 50
+realizations = 10
 
 plot(1:p$niter,xlab='Time',ylab='N Caught',ylim=c(0,15),type='n')
 
 for(i in 1:realizations){
   a = SimulateLobsterMovement(p=p)
-  for(j in 1:ncol(a$traps)){
-    lines(1:p$niter,a$traps[,j])
+  for(j in 1:ncol(a[[1]]$traps)){
+    lines(1:p$niter,a[[1]]$traps[,j])
   }
-  time.to.max8[[i]] = apply(a$traps,2, which.max)
-  max.catch8[[i]] = apply(a$traps,2,max)
+  time.to.max8[[i]] = apply(a[[1]]$traps,2, which.max)
+  max.catch8[[i]] = apply(a[[1]]$traps,2,max)
 }
+#-----
 p = list()
 p$nrowgrids = 10
 p$ncolgrids = 10
