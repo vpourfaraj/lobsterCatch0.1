@@ -42,7 +42,7 @@ SimulateLobsterMovement <- function(p=p,plot=F) {
         for(t in 2:tSteps){
           if(t>2) currentZoI<- currentZoI * smult
 
-          ko = updateGridLB( lobsterCoordinates = coordinatesOverTime[[t-1]], trapCoordinates=trapCoordinates, trapCatch=trapCatch[[t-1]], lobSize = lobSize[[t-1]], currentZoI = currentZoI, saturationThreshold=saturationThresholdStart, trapSaturation= trapSaturationStart, how_close=how_closeStart,dstep=dstepstart, lengthBased = lengthBased)
+          ko = updateGrid( lobsterCoordinates = coordinatesOverTime[[t-1]], trapCoordinates=trapCoordinates, trapCatch=trapCatch[[t-1]], lobSize = lobSize[[t-1]], currentZoI = currentZoI, saturationThreshold=saturationThresholdStart, trapSaturation= trapSaturationStart, how_close=how_closeStart,dstep=dstepstart, lengthBased = lengthBased)
           coordinatesOverTime[[t]] <- ko[[1]]
           trapCatch[[t]] <- ko[[2]]
           lobSize[[t]]   <- ko[[3]]
