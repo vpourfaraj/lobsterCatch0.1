@@ -29,6 +29,7 @@ p$niter =100 #it's not being used anymore?
 p$realizations=5 #number of iterations/simulations
 p$tSteps=10  #timesteps per iteration
 
+p$lengthBased= TRUE
 #run the model
 a = SimulateLobsterMovement(p=p)
 
