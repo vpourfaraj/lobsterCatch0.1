@@ -29,10 +29,11 @@ p$niter =100 #it's not being used anymore?
 p$realizations=5 #number of iterations/simulations
 p$tSteps=10  #timesteps per iteration
 
+p$lengthBased= TRUE
 #run the model
 a = SimulateLobsterMovement(p=p)
 
-plot(1:p$niter,a$traps[,1],xlab='Time',ylab='N Caught',ylim=c(0,200))
+plot(1:p$niter,a$traps[,3],xlab='Time',ylab='N Caught')
 
 #lets change a parameter
 p$saturationThresholdStart=10
