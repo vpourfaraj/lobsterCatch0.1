@@ -8,7 +8,7 @@
 #' @return Returns the probability of entry to trap
 #' @export
 catchability<- function(q0= 0.5,qmin=0, saturationThreshold=5, Ct=0, lobSize=NULL){
-  
+
   if( is.null(lobSize) ){
     r = (log(0.01) - log(q0 - qmin))/(saturationThreshold*-1)
     qo = (q0-qmin) / exp(r*Ct) + qmin
@@ -17,7 +17,7 @@ catchability<- function(q0= 0.5,qmin=0, saturationThreshold=5, Ct=0, lobSize=NUL
     #When lengthBased=TRUE and caught lobster is larger than 115-> q0=0
     temp <- unlist( strsplit( lobSize, split = '-CL' ) )
     temp <- temp[2:length(temp)]
-    if( any(temp)  > 115 ){
+    if( any(temp, na.rm = TRUE)  > 115 ){
       qo = 0
       return(qo)
     }else{
@@ -25,7 +25,7 @@ catchability<- function(q0= 0.5,qmin=0, saturationThreshold=5, Ct=0, lobSize=NUL
       qo = (q0-qmin) / exp(r*Ct) + qmin
       return(qo)
     }
-    
+
   }
 }
 
