@@ -4,8 +4,8 @@ devtools::install_github('vpourfaraj/lobsterCatch',ref='main')
 system.file("extdata", "LobsterSizeFreqs.csv", package = "lobsterCatch")
 
 library(lobsterCatch)
-#initialize a parameter file to pass info into the code and then put all into a function
 
+#initialize a parameter file to pass info into the code and then put all into a function
 p = list()
 p$nrowgrids = 10
 p$ncolgrids = 10
@@ -24,24 +24,24 @@ p$saturationThresholdStart = 5
 p$how_closeStart = 1
 p$dstepstart = 5
 
-p$niter =100 #it's not being used anymore?
+#it's not being used anymore? p$niter =100
 
-p$realizations=5 #number of iterations/simulations
-p$tSteps=10  #timesteps per iteration
+p$realizations=10 #number of iterations/simulations
+p$tSteps=50  #timesteps per iteration
 
 p$lengthBased= TRUE
 #run the model
 a = SimulateLobsterMovement(p=p)
 
-plot(1:p$tSteps,a[[1]]$traps[,3],xlab='Time',ylab='N Caught')
+plot(1:p$tSteps,a[[1]]$traps[,1],xlab='Time',ylab='Number of lobsters Caught',ylim = c(0,10))
 
 #lets change a parameter
-p$saturationThresholdStart=10
+p$saturationThresholdStart=30
 
 # rerun
 b = SimulateLobsterMovement(p=p)
 
-lines(1:p$niter,b$traps[,1])
+lines(1:p$tSteps,b[[1]]$traps[,1])
 
 #or just run it a bunch of times since the model is stochastic
 p$saturationThresholdStart = 5
