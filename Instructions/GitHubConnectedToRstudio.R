@@ -1,3 +1,4 @@
+#Hints
 # After  documenting a function run the follwoing code to regenrate .Rd file
 devtools::document()
 
