@@ -43,7 +43,8 @@ SimulateLobsterMovement <- function(p=p,plot=F) {
       outputs$traps = outtraps
       outputs$lobsters = outmove  
     outputs.to.return[[k]] = outputs
-       print(paste('Timing', Sys.time()-start, 'for iteration #',k,sep=" "))
+    ret = Sys.time()-start
+       print(paste('Timing', ret,attr(ret,'units'), 'for iteration #',k,sep=" "))
        }
     return(outputs.to.return)
   
