@@ -9,6 +9,7 @@ updateGrid(
   lobsterCoordinates,
   trapCoordinates,
   trapCatch,
+  lobSize,
   radius_of_influence = 15,
   dstep = 5,
   currentZoI,
@@ -16,7 +17,8 @@ updateGrid(
   q0 = 0.5,
   qmin = 0,
   saturationThreshold = 5,
-  trapSaturation = T
+  trapSaturation = T,
+  lengthBased = F
 )
 }
 \arguments{
@@ -26,9 +28,13 @@ updateGrid(
 
 \item{trapCatch}{number of lobsters caught}
 
+\item{lobSize}{size of caught lobster}
+
 \item{radius_of_influence}{is set to 15 by default}
 
 \item{dstep}{is set to 5 by default}
+
+\item{currentZoI}{is the bait's area of influence at each timestpe}
 
 \item{how_close}{is set to 0.1 by default}
 
@@ -36,14 +42,14 @@ updateGrid(
 
 \item{qmin}{is set to 0 by default}
 
-\item{trapSaturation}{is set to True by default}
+\item{trapSaturation}{is set to TRUE by default}
 
-\item{is}{the bait's area of influence at each timestpe}
+\item{lengthBased}{is set to FALSE by default}
 
 \item{saturationThresholdis}{set to 5 by default}
 }
 \value{
-a list of new coordinates and number of catch
+a list of new coordinates, number of catch and their size
 }
 \description{
 This function updates the coordinate of each lobster at each timestep,

@@ -4,7 +4,13 @@
 \alias{catchability}
 \title{This function calculates the probability of entry to trap (aka catchability)}
 \usage{
-catchability(q0 = 0.5, qmin = 0, saturationThreshold = 5, Ct = 0)
+catchability(
+  q0 = 0.5,
+  qmin = 0,
+  saturationThreshold = 5,
+  Ct = 0,
+  lobSize = NULL
+)
 }
 \arguments{
 \item{q0}{is the initial probability of entry into an empty trap which is set to 0.5 by default}
@@ -19,7 +25,7 @@ another lobster entering the trap drops to qmin, the default value is 5}
 \item{r}{is the instantaneous rate of change in qo with respect to Ct}
 }
 \value{
-the probability of entry to trap
+Returns the probability of entry to trap
 }
 \description{
 This function calculates the probability of entry to trap (aka catchability)

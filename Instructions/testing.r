@@ -8,6 +8,11 @@ nr = 18
 nc = 18
 arena = matrix(0,nr,nc)
 y=x=seq(1,17,1)
+require(geosphere)
+load_all('D:/git/lobsterCatch')
+
+arena = matrix(0,12,12)
+y=x=seq(1,11,2)
 traps = expand.grid(x,y)
 
 p = list()
@@ -25,7 +30,7 @@ p$ntrapsstart = length(p$trapEastStart)
 
 p$saturationThresholdStart = 5
 p$how_closeStart = .1
-p$dstepstart = 5 
+p$dstepstart = 5
 p$trapSaturationStart = T
 
 p$tSteps = 50
