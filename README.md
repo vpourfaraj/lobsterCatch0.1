@@ -1,2 +1,2 @@
- lobsterCatch is a package that we are developing to simulate models of catch processes in American lobster fishery.
+ This is the first version of the package.
 
